@@ -163,27 +163,28 @@ function useAppContext() {
 
 const PER_PAGE = 12
 
-function fetchProducts(state: State, dispatch: Dispatch) {
-    dispatch({type: "loading"})
-    const page = (state.page + 1)
-    const categoryId = state.selectedCategory?.id
-    let url = "api/products?per_page=" + PER_PAGE + "&page=" + page
-    //other types not supported yet!
-    url = url + "&type=simple"
-    if (categoryId)
-        url = url + "&category=" + categoryId
-    fetch(url, {method: "GET"}).then((res) =>
-        res.json().then((products) => {
-            const hasMore = products.length === PER_PAGE
-            dispatch({type: "products", products, page, hasMore, categoryId})
-        })
-    )
-}
+// function fetchProducts(state: State, dispatch: Dispatch) {
+//     dispatch({type: "loading"})
+//     const page = (state.page + 1)
+//     const categoryId = state.selectedCategory?.id
+//     let url = "api/products?per_page=" + PER_PAGE + "&page=" + page
+//     //other types not supported yet!
+//     url = url + "&type=simple"
+//     if (categoryId)
+//         url = url + "&category=" + categoryId
+//     fetch(url, {method: "GET"}).then((res) =>
+//         res.json().then((products) => {
+//             const hasMore = products.length === PER_PAGE
+//             dispatch({type: "products", products, page, hasMore, categoryId})
+//         })
+//     )
+// }
 
-function fetchCategories(dispatch: Dispatch) {
-    fetch("api/categories?per_page=30", {method: "GET"}).then((res) =>
-        res.json().then((categories) => dispatch({type: "categories", categories}))
-    )
-}
+// function fetchCategories(dispatch: Dispatch) {
+//     fetch("api/categories?per_page=30", {method: "GET"}).then((res) =>
+//         res.json().then((categories) => dispatch({type: "categories", categories}))
+//     )
+// }
 
-export {ContextProvider, useAppContext, fetchProducts, fetchCategories}
+export {ContextProvider, useAppContext}
+// export {ContextProvider, useAppContext, fetchProducts, fetchCategories}
